@@ -4,7 +4,7 @@ services:
     image: "networkboot/dhcpd"
     network_mode: host
     volumes:
-    - /srv/dhcp/:/data/
+    - /home/dr/dhcp/:/data/
   glass:
     image: "node:8"
     working_dir: /home/node/app
@@ -12,10 +12,10 @@ services:
       - NODE_ENV=production
     volumes:
       - .:/home/node/app
-      - /srv/dhcp:/var/lib/dhcp
-      - /srv/dhcp/dhcpd.conf:/etc/dhcp/dhcpd.conf
-      - /srv/dhcp/
+      - /home/dr/dhcp:/var/lib/dhcp
+      - /home/dr/dhcp/dhcpd.conf:/etc/dhcp/dhcpd.conf
+      - /home/dr/dhcp/
     ports:
-      - "8080:8080"
-      - "3000:3000"
-    command: "/bin/sh -c 'npm install && npm start'"
+      - "8085:8080"
+      - "8086:3000"
+    command: "/bin/sh -c 'npm install npm@4 && npm install && npm start'"
